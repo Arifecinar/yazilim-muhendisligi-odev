@@ -13,3 +13,19 @@ setInterval(updateTime, 1000);
 
 // Sayfa yüklendiğinde saati hemen göster
 updateTime();
+// Mod geçiş fonksiyonu
+function toggleMode() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.clock').classList.toggle('dark-mode');
+    const button = document.getElementById('toggle-mode');
+    button.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+        button.textContent = 'Switch to Light Mode';
+    } else {
+        button.textContent = 'Switch to Dark Mode';
+    }
+}
+
+// Butona tıklanınca mod değiştir
+document.getElementById('toggle-mode').addEventListener('click', toggleMode);
