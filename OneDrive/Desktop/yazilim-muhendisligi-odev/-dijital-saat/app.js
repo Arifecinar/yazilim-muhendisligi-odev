@@ -29,3 +29,7 @@ function toggleMode() {
 
 // Butona tıklanınca mod değiştir
 document.getElementById('toggle-mode').addEventListener('click', toggleMode);
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    loader.classList.add("hidden");
+});
