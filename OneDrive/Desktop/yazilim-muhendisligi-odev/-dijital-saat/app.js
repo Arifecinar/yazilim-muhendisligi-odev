@@ -17,6 +17,7 @@ updateTime();
 function toggleMode() {
     document.body.classList.toggle('dark-mode');
     document.querySelector('.clock').classList.toggle('dark-mode');
+    
     const button = document.getElementById('toggle-mode');
     button.classList.toggle('dark-mode');
 
@@ -32,4 +33,10 @@ document.getElementById('toggle-mode').addEventListener('click', toggleMode);
 window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
     loader.classList.add("hidden");
+});
+// Tema geçişi
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('theme2');
+    document.querySelector('.clock').classList.toggle('theme2');
+    document.querySelectorAll('button').forEach(btn => btn.classList.toggle('theme2'));
 });

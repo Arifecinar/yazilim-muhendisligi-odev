@@ -107,3 +107,21 @@ button.dark-mode:hover {
         font-size: 0.9rem;
     }
 }
+body.theme2 {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.clock.theme2 {
+    background-color: #dfefff;
+    color: #222;
+}
+
+button.theme2 {
+    background-color: #222;
+    color: #fff;
+}
+
+button.theme2:hover {
+    background-color: #444;
+}
