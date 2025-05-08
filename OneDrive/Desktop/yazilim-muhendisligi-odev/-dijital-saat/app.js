@@ -1,7 +1,13 @@
-
+let is24Hour = true;
 function updateTime() {
     const now = new Date();
-    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const time = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: !is24Hour
+    });
+    
     const date = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     
     document.getElementById('time').textContent = time;
@@ -10,6 +16,7 @@ function updateTime() {
 
 // Her saniyede bir saati güncelle
 setInterval(updateTime, 1000);
+
 
 // Sayfa yüklendiğinde saati hemen göster
 updateTime();
@@ -39,4 +46,9 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
     document.body.classList.toggle('theme2');
     document.querySelector('.clock').classList.toggle('theme2');
     document.querySelectorAll('button').forEach(btn => btn.classList.toggle('theme2'));
+});
+// Saat formatı değiştir
+document.getElementById('format-toggle').addEventListener('click', () => {
+    is24Hour = !is24Hour;
+    updateTime(); // format değişince saati hemen güncelle
 });
