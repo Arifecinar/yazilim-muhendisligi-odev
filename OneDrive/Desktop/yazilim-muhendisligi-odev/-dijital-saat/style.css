@@ -125,3 +125,6 @@ button.theme2 {
 button.theme2:hover {
     background-color: #444;
 }
+button {
+    margin: 10px 5px;
+}
