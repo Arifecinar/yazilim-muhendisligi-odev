@@ -43,3 +43,35 @@ section p {
     border-radius: 5px;
     color: #333;
 }
+#projects {
+    margin-top: 40px;
+}
+
+.project {
+    background-color: #f2f2f2;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.project h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+.project p {
+    color: #555;
+}
+
+.project a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
