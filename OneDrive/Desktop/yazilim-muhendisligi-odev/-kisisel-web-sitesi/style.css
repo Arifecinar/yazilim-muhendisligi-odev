@@ -97,3 +97,33 @@ section p {
 #contact a:hover {
     text-decoration: underline;
 }
+/* 📱 Responsive Tasarım */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    #skills li,
+    .project,
+    #contact li {
+        font-size: 0.95rem;
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    #projects .project {
+        padding: 10px;
+    }
+}
