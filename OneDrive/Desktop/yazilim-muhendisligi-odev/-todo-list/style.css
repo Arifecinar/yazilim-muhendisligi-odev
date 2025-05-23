@@ -30,3 +30,17 @@ li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+li.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+li button {
+    float: right;
+    margin-left: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
