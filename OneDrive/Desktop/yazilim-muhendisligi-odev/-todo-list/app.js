@@ -54,3 +54,26 @@ function updateStorage() {
 
     localStorage.setItem('tasks', JSON.stringify(data));
 }
+document.getElementById('filter-all').addEventListener('click', () => {
+    setFilter("all");
+});
+
+document.getElementById('filter-active').addEventListener('click', () => {
+    setFilter("active");
+});
+
+document.getElementById('filter-completed').addEventListener('click', () => {
+    setFilter("completed");
+});
+
+function setFilter(filter) {
+    const items = document.querySelectorAll('#task-list li');
+    items.forEach(item => {
+        const completed = item.classList.contains('completed');
+        item.style.display =
+            filter === "all" ? "flex" :
+            filter === "active" && !completed ? "flex" :
+            filter === "completed" && completed ? "flex" :
+            "none";
+    });
+}
