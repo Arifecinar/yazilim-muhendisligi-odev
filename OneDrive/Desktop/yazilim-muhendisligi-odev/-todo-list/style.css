@@ -26,10 +26,13 @@ ul {
 }
 
 li {
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
 li.completed {
     text-decoration: line-through;
     color: #888;

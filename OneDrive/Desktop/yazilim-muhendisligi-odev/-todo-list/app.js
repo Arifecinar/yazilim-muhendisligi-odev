@@ -19,25 +19,27 @@ function renderTask(text, completed = false) {
         updateStorage();
     });
 
-    const deleteButton = document.createElement('button');
+    const deleteButton = document.createElement('button'); // 👈 EKLENDİ
     deleteButton.textContent = "Sil";
-    deleteButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        taskList.removeChild(listItem);
-        updateStorage();
+    deleteButton.addEventListener('click', () => {
+        const confirmed = confirm("Bu görevi silmek istediğinize emin misiniz?");
+        if (confirmed) {
+            taskList.removeChild(listItem);
+            updateStorage(); // LocalStorage'ı da güncelle
+        }
     });
 
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
 }
 
-// Görev ekleme
+// Görev ekleme butonuna tıklanınca
 addButton.addEventListener('click', () => {
     const text = taskInput.value.trim();
     if (text) {
         renderTask(text);
-        taskInput.value = "";
         updateStorage();
+        taskInput.value = "";
     }
 });
 
@@ -54,6 +56,8 @@ function updateStorage() {
 
     localStorage.setItem('tasks', JSON.stringify(data));
 }
+
+// Filtreleme butonları
 document.getElementById('filter-all').addEventListener('click', () => {
     setFilter("all");
 });
