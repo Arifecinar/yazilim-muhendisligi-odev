@@ -81,3 +81,14 @@ function setFilter(filter) {
             "none";
     });
 }
+const searchInput = document.getElementById('search-input');
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const items = document.querySelectorAll('#task-list li');
+
+    items.forEach(item => {
+        const taskText = item.firstChild.textContent.toLowerCase();
+        item.style.display = taskText.includes(query) ? "flex" : "none";
+    });
+});
