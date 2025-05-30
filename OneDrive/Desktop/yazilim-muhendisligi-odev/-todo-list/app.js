@@ -21,13 +21,17 @@ function renderTask(text, completed = false) {
 
     const deleteButton = document.createElement('button'); // 👈 EKLENDİ
     deleteButton.textContent = "Sil";
-    deleteButton.addEventListener('click', () => {
-        const confirmed = confirm("Bu görevi silmek istediğinize emin misiniz?");
-        if (confirmed) {
+   deleteButton.addEventListener('click', () => {
+    const confirmed = confirm("Bu görevi silmek istediğinize emin misiniz?");
+    if (confirmed) {
+        listItem.classList.add('fade-out');
+        setTimeout(() => {
             taskList.removeChild(listItem);
-            updateStorage(); // LocalStorage'ı da güncelle
-        }
-    });
+            updateStorage();
+        }, 300); // Animasyon süresiyle eşleşmeli
+    }
+});
+
 
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
