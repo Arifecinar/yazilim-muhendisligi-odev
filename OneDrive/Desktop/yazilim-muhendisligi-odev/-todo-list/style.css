@@ -98,3 +98,11 @@ li.fade-out {
         padding: 0;
     }
 }
+.category-label {
+    background-color: #4caf50;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin-left: 10px;
+    font-size: 12px;
+}
