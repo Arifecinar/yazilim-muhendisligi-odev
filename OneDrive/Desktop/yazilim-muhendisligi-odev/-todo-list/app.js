@@ -1,47 +1,45 @@
 const addButton = document.getElementById('add-task');
 const taskInput = document.getElementById('task-input');
+const taskDateInput = document.getElementById('task-date');
 const taskList = document.getElementById('task-list');
-const categoryInput = document.getElementById('category-input');
+const searchInput = document.getElementById('search-input');
+
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Sayfa yüklendiğinde görevleri yükle
-tasks.forEach(task => renderTask(task.text, task.completed));
+tasks.forEach(task => renderTask(task.text, task.completed, task.date));
 
 // Görev oluşturma fonksiyonu
-function renderTask(text, completed = false, category = "") {
+function renderTask(text, completed = false, date = "") {
     const listItem = document.createElement('li');
 
-    const taskSpan = document.createElement('span');
-    taskSpan.textContent = text;
-    listItem.appendChild(taskSpan);
+    const content = document.createElement('span');
+    content.textContent = text;
 
-    if (category) {
-        const categoryLabel = document.createElement('span');
-        categoryLabel.textContent = category;
-        categoryLabel.classList.add('category-label');
-        listItem.appendChild(categoryLabel);
+    const dateLabel = document.createElement('small');
+    if (date) {
+        dateLabel.textContent = ` (Son tarih: ${date})`;
+        dateLabel.style.marginLeft = "10px";
+        dateLabel.style.color = "#999";
     }
+
+    listItem.appendChild(content);
+    listItem.appendChild(dateLabel);
 
     if (completed) listItem.classList.add('completed');
 
-    // Görev tamamlama (toggle)
     listItem.addEventListener('click', () => {
         listItem.classList.toggle('completed');
         updateStorage();
     });
 
-    // Silme butonu
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "Sil";
-    deleteButton.addEventListener('click', (e) => {
-        e.stopPropagation();
+    deleteButton.addEventListener('click', () => {
         const confirmed = confirm("Bu görevi silmek istediğinize emin misiniz?");
         if (confirmed) {
-            listItem.classList.add('fade-out');
-            setTimeout(() => {
-                taskList.removeChild(listItem);
-                updateStorage();
-            }, 300);
+            taskList.removeChild(listItem);
+            updateStorage();
         }
     });
 
@@ -49,22 +47,20 @@ function renderTask(text, completed = false, category = "") {
     taskList.appendChild(listItem);
 }
 
-
-// Görev ekleme butonuna tıklanınca
-
-
+// Görev ekleme işlemi
 addButton.addEventListener('click', () => {
     const text = taskInput.value.trim();
-    const category = categoryInput.value.trim();
+    const date = taskDateInput.value;
 
     if (text) {
-        renderTask(text, false, category);
+        renderTask(text, false, date);
+        tasks.push({ text, completed: false, date });
         updateStorage();
+
         taskInput.value = "";
-        categoryInput.value = "";
+        taskDateInput.value = "";
     }
 });
-
 
 // localStorage güncelle
 function updateStorage() {
@@ -72,18 +68,17 @@ function updateStorage() {
     const data = [];
 
     items.forEach(item => {
-        const text = item.childNodes[0].textContent.trim();
-        const categorySpan = item.querySelector('.category-label');
-        const category = categorySpan ? categorySpan.textContent : "";
+        const text = item.querySelector('span').textContent.trim();
         const completed = item.classList.contains('completed');
-        data.push({ text, completed, category });
+        const date = item.querySelector('small')?.textContent.match(/(\d{4}-\d{2}-\d{2})/)?.[0] || "";
+        data.push({ text, completed, date });
     });
 
-    localStorage.setItem('tasks', JSON.stringify(data));
+    tasks = data;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-
-// Filtreleme butonları
+// Filtreleme işlemleri
 document.getElementById('filter-all').addEventListener('click', () => {
     setFilter("all");
 });
@@ -107,14 +102,14 @@ function setFilter(filter) {
             "none";
     });
 }
-const searchInput = document.getElementById('search-input');
 
+// Arama kutusu
 searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase();
     const items = document.querySelectorAll('#task-list li');
 
     items.forEach(item => {
-        const taskText = item.firstChild.textContent.toLowerCase();
+        const taskText = item.querySelector('span').textContent.toLowerCase();
         item.style.display = taskText.includes(query) ? "flex" : "none";
     });
 });

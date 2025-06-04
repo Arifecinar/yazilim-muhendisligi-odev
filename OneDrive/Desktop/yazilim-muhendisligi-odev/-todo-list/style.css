@@ -106,3 +106,24 @@ li.fade-out {
     margin-left: 10px;
     font-size: 12px;
 }
+#counters {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#clear-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#clear-buttons button {
+    flex: 1;
+    padding: 8px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

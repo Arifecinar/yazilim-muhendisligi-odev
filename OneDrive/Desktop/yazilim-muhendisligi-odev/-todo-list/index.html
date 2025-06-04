@@ -9,6 +9,7 @@
     <div class="container">
         <h1>📝 Yapılacaklar Listesi</h1>
         <input type="text" id="task-input" placeholder="Bir görev girin...">
+        <input type="date" id="task-date">
         <button id="add-task">Ekle</button>
         <div class="category-input">
     <input type="text" id="category-input" placeholder="Kategori (isteğe bağlı)">
@@ -23,6 +24,15 @@
 </div>
 
     </div>
+<div id="counters">
+    <p>Toplam Görev: <span id="total-count">0</span></p>
+    <p>Tamamlanan Görev: <span id="completed-count">0</span></p>
+</div>
+
+<div id="clear-buttons">
+    <button id="clear-completed">Tamamlananları Temizle</button>
+    <button id="clear-all">Tümünü Temizle</button>
+</div>
 
     <script src="app.js"></script>
 </body>
