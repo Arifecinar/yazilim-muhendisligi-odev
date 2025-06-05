@@ -113,3 +113,14 @@ searchInput.addEventListener('input', () => {
         item.style.display = taskText.includes(query) ? "flex" : "none";
     });
 });
+const themeButton = document.getElementById('toggle-theme');
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+}
+
+themeButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
